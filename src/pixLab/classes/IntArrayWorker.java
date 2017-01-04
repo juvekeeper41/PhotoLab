@@ -57,7 +57,7 @@ public class IntArrayWorker
 		  {
 			  if (item > largest)
 				{
-					//largest = item;
+					largest = item;
 				}
 		  }
 	  }
