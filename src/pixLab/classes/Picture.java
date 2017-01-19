@@ -129,12 +129,53 @@ public class Picture extends SimplePicture
 	  
 	  for (int row = pixels.length - 1; row >= 0; row--)
 	  {
-		  for(int col = width /2 - 1; col >= 0; col--)
+		  for (int col = width / 2 - 1; col >= 0; col--)
 		  {
 			  leftPixel = pixels[row][col];
 			  rightPixel = pixels[row][width - 1 - col];
 			  leftPixel.setColor(rightPixel.getColor());
 		  }
+	  }
+  }
+  
+  public void mirrorDiagonal()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  Pixel topRight = null;
+	  Pixel bottomLeft = null;
+	  
+	  for (int row = 0; row < pixels.length; row++)
+	  {
+		  for(int col = 0; col < pixels[0].length; col++)
+		  {
+	  		if(row != col && row < pixels[0].length && col < pixels.length)
+	  		{
+	  			topRight = pixels[row][col];
+	  			bottomLeft = pixels[col][row];
+	  			bottomLeft.setColor(topRight.getColor());
+	  		}
+  		}
+	  }
+  }
+ 	
+  public void mirrorDiagonalTopLeftToBottomRight()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  int mirrorPoint = Math.min(pixels.length, pixels[0].length) - 1;
+	  Pixel topRight = null;
+	  Pixel bottomLeft = null;
+	  
+	  for (int row = 0; row < pixels.length; row++)
+	  {
+		  for(int col = 0; col < pixels[0].length; col++)
+		  {
+			  if(row + col != mirrorPoint && row < pixels[0].length && col < pixels.length)
+			  {
+				  bottomLeft = pixels[row][col];
+				  topRight = pixels[mirrorPoint-col][mirrorPoint - row];
+				  topRight.setColor(bottomLeft.getColor());
+			  }
+		 }
 	  }
   }
   
@@ -157,6 +198,36 @@ public class Picture extends SimplePicture
 		  }
 	  }
   }
+  
+  public void mirrorGull()
+  {
+	  int mirrorPoint = 270;
+	  Pixel topPixel = null;
+	  Pixel bottomPixel = null;
+	  
+	  Pixel [][] pixels = this.getPixels2D();
+	  
+	  for (int row = 130; row < mirrorPoint; row++)
+	  {
+		  for (int col = 75; col < 295; col++)
+		  {
+			  //reflect over column 238 
+			  
+			  topPixel = pixels[row][col];
+			  bottomPixel = pixels[row + 25][mirrorPoint - col + mirrorPoint];
+			  bottomPixel.setColor(topPixel.getColor());
+			  {
+				  
+			  }
+		  }
+	  }
+  }
+  
+  public void mirrorSnowman()
+  {
+	  
+  }
+  
   
   /** Mirror just part of a picture of a temple */
   public void mirrorTemple()
