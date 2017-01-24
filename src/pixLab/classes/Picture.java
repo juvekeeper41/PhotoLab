@@ -201,20 +201,20 @@ public class Picture extends SimplePicture
   
   public void mirrorGull()
   {
-	  int mirrorPoint = 270;
+	  int mirrorPoint = 350;
 	  Pixel topPixel = null;
 	  Pixel bottomPixel = null;
 	  
 	  Pixel [][] pixels = this.getPixels2D();
 	  
-	  for (int row = 130; row < mirrorPoint; row++)
+	  for (int row = 200; row < 350; row++)
 	  {
-		  for (int col = 75; col < 295; col++)
+		  for (int col = 70; col < 310; col++)
 		  {
 			  //reflect over column 238 
 			  
 			  topPixel = pixels[row][col];
-			  bottomPixel = pixels[row + 25][mirrorPoint - col + mirrorPoint];
+			  bottomPixel = pixels[row][mirrorPoint - col + mirrorPoint];
 			  bottomPixel.setColor(topPixel.getColor());
 			  {
 				  
@@ -328,6 +328,29 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void edgeDetection2(int edgeDist)
+  {
+	  Pixel leftPixel = null;
+	  Pixel rightPixel = null;
+	  Pixel [][] pixels = this.getPixels2D();
+	  Color rightColor = null;
+	  
+	  for (int row = 0; row < pixels.length; row++)
+	  {
+		  for (int col = 0;
+				  col < pixels[0].length - 1; col++)
+		  {
+			  leftPixel = pixels[row][col];
+			  rightPixel = pixels[row+1][col+1];
+			  rightColor = rightPixel.getColor();
+			  if(leftPixel.colorDistance(rightColor) > edgeDist)
+				leftPixel.setColor(Color.WHITE);
+			  else
+				leftPixel.setColor(Color.BLACK);
+		  }
+	  }
+	  
+  }
   
   /* Main method for testing - each class in Java can have a main 
    * method 
