@@ -35,7 +35,6 @@ public class PictureTester
 	  koala.explore();
 	  koala.zeroBlue();
 	  koala.explore();
-	  
   }
   
   public static void testMirrorDiagonal()
@@ -105,7 +104,7 @@ public class PictureTester
 	  Picture swan = new Picture("swan.jpg");
 	  swan.edgeDetection(10);
 	  swan.explore();
-	  swan.edgeDetection(10);
+	  swan.edgeDetection(20);
 	  swan.explore();
   }
   
@@ -134,7 +133,7 @@ public class PictureTester
 	//testMirrorDiagonal();
 	//testDiagonalTopLeftToBottomRight();
     //testCopy();
-    testEdgeDetection();
+    //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
