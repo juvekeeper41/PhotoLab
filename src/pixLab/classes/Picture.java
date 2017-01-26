@@ -94,7 +94,7 @@ public class Picture extends SimplePicture
     {
       for (Pixel pixelObj : rowArray)
       {
-        pixelObj.setBlue(0);
+    	  pixelObj.setBlue(0);
       }
     }
   }
@@ -207,9 +207,9 @@ public class Picture extends SimplePicture
 	  
 	  Pixel [][] pixels = this.getPixels2D();
 	  
-	  for (int row = 200; row < 350; row++)
+	  for (int row = 220; row < 360; row++)
 	  {
-		  for (int col = 70; col < 310; col++)
+		  for (int col = 120; col < 400; col++)
 		  {
 			  //reflect over column 238 
 			  
@@ -225,7 +225,22 @@ public class Picture extends SimplePicture
   
   public void mirrorSnowman()
   {
+	  int mirrorPoint = 208;
+	  Pixel topPixel = null;
+	  Pixel botPixel = null;
 	  
+	  Pixel [][] pixels = this.getPixels2D();
+	  
+	  for(int row = 158; row < mirrorPoint; row++)
+	  {
+		  for(int col = 95; col < 295; col++)
+		  {
+			  
+			  topPixel = pixels[row][col];
+			  botPixel = pixels[mirrorPoint - row + mirrorPoint][col];
+			  botPixel.setColor(topPixel.getColor());;
+		  }
+	  }
   }
   
   
@@ -335,7 +350,7 @@ public class Picture extends SimplePicture
 	  Pixel [][] pixels = this.getPixels2D();
 	  Color rightColor = null;
 	  
-	  for (int row = 0; row < pixels.length; row++)
+	  for (int row = 0; row < pixels.length - 1; row++)
 	  {
 		  for (int col = 0;
 				  col < pixels[0].length - 1; col++)
@@ -349,6 +364,58 @@ public class Picture extends SimplePicture
 				leftPixel.setColor(Color.BLACK);
 		  }
 	  }
+	  
+  }
+  
+  public void fullRandom()
+  {
+	  Pixel [][] currentPicture = this.getPixels2D();
+	  for (Pixel [] row : currentPicture)
+	  {
+		  for (Pixel currentPixel : row)
+		  {
+			  int red = (int) (Math.random() * 256);
+			  int green = (int) (Math.random() * 256);
+			  int blue = (int) (Math.random() * 256);
+			  
+			  currentPixel.setColor(new Color(currentPixel.getRed(), currentPixel.getGreen(), blue));
+		  }
+	  }
+  }
+  
+  public void Grayscale()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] row : pixels)
+    {
+      for (Pixel pixelObj : row)
+      {   
+        int avg = (int)((pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue()) / 3);
+        pixelObj.setRed(avg);
+        pixelObj.setBlue(avg);
+        pixelObj.setGreen(avg);
+      }
+    }
+  }
+ 
+  public void negateColor()
+  {
+	  Pixel[][] pixels = this.getPixels2D();
+	  {
+		  for (Pixel [] row : pixels)
+		  {
+			  for(Pixel currentPixel : row)
+			  {
+				  currentPixel.setRed(255 - currentPixel.getRed());
+				  currentPixel.setGreen(255 - currentPixel.getGreen());
+				  currentPixel.setBlue(255 - currentPixel.getBlue());
+			  }
+		  }
+	  	}
+     }
+  
+  public void personalizedCollage()
+  {
 	  
   }
   

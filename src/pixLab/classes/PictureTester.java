@@ -81,6 +81,14 @@ public class PictureTester
 	  gull.mirrorGull();
 	  gull.explore();
   }
+  
+  public static void testMirrorSnowman()
+  {
+	  Picture snowman = new Picture("snowman.jpg");
+	  snowman.explore();
+	  snowman.mirrorSnowman();
+	  snowman.explore();
+  }
   /** Method to test the collage method */
   public static void testCollage()
   {
@@ -108,6 +116,41 @@ public class PictureTester
 	  swan.explore();
   }
   
+  public static void testFullRandom()
+  {
+	  Picture cumberlandIsland = new Picture("cumberlandIsland.jpg");
+	  cumberlandIsland.explore();
+	  cumberlandIsland.fullRandom();
+	  cumberlandIsland.explore();
+  }
+  
+  public static void testGrayscale()
+  {
+	  Picture cumberlandIsland = new Picture("cumberlandIsland.jpg");
+	  cumberlandIsland.explore();
+	  cumberlandIsland.Grayscale();
+	  cumberlandIsland.explore();
+  }
+  
+  public static void testNegateColor()
+  {
+	  Picture jenny = new Picture("temple.jpg");
+	  jenny.explore();
+	  jenny.negateColor();
+	  jenny.explore();
+  }
+  
+  public static void testFiveFilters()
+  {
+	  Picture derpy = new Picture("koala.jpg");
+	  derpy.explore();
+	  derpy.negateColor();
+	  derpy.Grayscale();
+	  derpy.mirrorBottomToTop();
+	  derpy.mirrorDiagonal();
+	  derpy.explore();
+  }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String [] args)
@@ -126,13 +169,18 @@ public class PictureTester
     //testMirrorVerticalRightToLeft();
     //testMirrorTemple();
     //testMirrorArms();
+	//testFullRandom();
+	//testGrayscale();
     //testMirrorGull();
+	//testMirrorSnowman();
     //testMirrorDiagonal();
     //testCollage();
+	  testFiveFilters();
 	//testMirrorBottomToTop();
 	//testMirrorDiagonal();
 	//testDiagonalTopLeftToBottomRight();
     //testCopy();
+	//testNegateColor();
     //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
