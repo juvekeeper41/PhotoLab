@@ -142,13 +142,23 @@ public class PictureTester
   
   public static void testFiveFilters()
   {
-	  Picture derpy = new Picture("koala.jpg");
+	  Picture derpy = new Picture("derpy.jpg");
 	  derpy.explore();
 	  derpy.negateColor();
 	  derpy.Grayscale();
 	  derpy.mirrorBottomToTop();
 	  derpy.mirrorDiagonal();
+	  derpy.mirrorVertical();
 	  derpy.explore();
+  }
+  
+  public static void testCopy()
+  {
+	  Picture swan = new Picture("swan.jpg");
+	  swan.explore();
+	  swan.copy(swan , 120, 120, 200, 200);
+	  swan.explore();
+	  
   }
   
   /** Main method for testing.  Every class can have a main
@@ -175,7 +185,7 @@ public class PictureTester
 	//testMirrorSnowman();
     //testMirrorDiagonal();
     //testCollage();
-	  testFiveFilters();
+	testFiveFilters();
 	//testMirrorBottomToTop();
 	//testMirrorDiagonal();
 	//testDiagonalTopLeftToBottomRight();
@@ -189,5 +199,6 @@ public class PictureTester
     //testSetRedToHalfValueInTopHalf();
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
+	//testCopy();
   }
 }
