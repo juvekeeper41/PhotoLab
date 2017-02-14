@@ -99,6 +99,30 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void zeroGreen()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+    	  pixelObj.setGreen(0);
+      }
+    }
+  }
+  
+  public void zeroRed()
+  {
+    Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+    	  pixelObj.setRed(0);
+      }
+    }
+  }
+  
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -329,20 +353,35 @@ public class Picture extends SimplePicture
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
-    this.copy(flower1,0,0);
-    this.copy(flower2,100,0);
-    this.copy(flower1,200,0);
-    Picture flowerNoBlue = new Picture(flower2);
+    Picture variable1 = new Picture("variable1.jpg");
+    Picture variable2 = new Picture("variable2.jpg");
+    this.copy(variable1,0,0);
+    this.copy(variable2,100,0);
+    this.copy(variable1,200,0);
+    Picture flowerNoBlue = new Picture(variable2);
     flowerNoBlue.zeroBlue();
     this.copy(flowerNoBlue,300,0);
-    this.copy(flower1,400,0);
-    this.copy(flower2,500,0);
+    this.copy(variable1,400,0);
+    this.copy(variable2,500,0);
     this.mirrorVertical();
     this.write("collage.jpg");
   }
   
+  public void createCollage2()
+  {
+    Picture variable1 = new Picture("moon-surface.jpg");
+    Picture variable2 = new Picture("temple.jpg");
+    this.copy(variable1,0,0);
+    this.copy(variable2,100,0);
+    this.copy(variable1,200,0);
+    Picture flowerNoBlue = new Picture(variable2);
+    flowerNoBlue.zeroBlue();
+    this.copy(flowerNoBlue,300,0);
+    this.copy(variable1,400,0);
+    this.copy(variable2,500,0);
+    this.mirrorVertical();
+    this.write("collage.jpg");
+  }
   
   /** Method to show large changes in color 
     * @param edgeDist the distance for finding edges
@@ -405,10 +444,67 @@ public class Picture extends SimplePicture
 			  int green = (int) (Math.random() * 256);
 			  int blue = (int) (Math.random() * 256);
 			  
+			  currentPixel.setColor(new Color(red, green, blue));
+		  }
+	  }
+  }
+  
+  public void fullRandomBlue()
+  {
+	  Pixel [][] currentPicture = this.getPixels2D();
+	  for (Pixel [] row : currentPicture)
+	  {
+		  for (Pixel currentPixel : row)
+		  {
+			  int blue = (int) (Math.random() * 256);
+			  
 			  currentPixel.setColor(new Color(currentPixel.getRed(), currentPixel.getGreen(), blue));
 		  }
 	  }
   }
+  
+  public void fullRandomGreen()
+  {
+	  Pixel [][] currentPicture = this.getPixels2D();
+	  for (Pixel [] row : currentPicture)
+	  {
+		  for (Pixel currentPixel : row)
+		  {
+			  int green = (int) (Math.random() * 256);
+			 
+			  currentPixel.setColor(new Color(currentPixel.getRed(), green, currentPixel.getBlue()));
+		  }
+	  }
+  }
+  
+  public void fullRandomRed()
+  {
+	  Pixel [][] currentPicture = this.getPixels2D();
+	  for (Pixel [] row : currentPicture)
+	  {
+		  for (Pixel currentPixel : row)
+		  {
+			  int red = (int) (Math.random() * 256);
+			 
+			  currentPixel.setColor(new Color(red, currentPixel.getGreen(), currentPixel.getBlue()));
+		  }
+	  }
+  }
+  
+  public void partialRandomRed(int x)
+  {
+	  Pixel [][] currentPicture = this.getPixels2D();
+	  for (Pixel [] row : currentPicture)
+	  {
+		  for (Pixel currentPixel : row)
+		  {
+			  int green = (int) (Math.random() * 256);
+			 
+			  currentPixel.setColor(new Color(currentPixel.getRed(), green, currentPixel.getBlue()));
+		  }
+	  }
+  }
+  
   
   public void Grayscale()
   {

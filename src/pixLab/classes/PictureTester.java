@@ -18,6 +18,14 @@ public class PictureTester
     beach.explore();
   }
   
+  public static void testZeroGreen()
+  {
+	  Picture beach = new Picture("beach.jpg");
+	    beach.explore();
+	    beach.zeroGreen();
+	    beach.explore();
+  }
+  
   /** Method to test mirrorVertical */
   public static void testMirrorVertical()
   {
@@ -126,7 +134,7 @@ public class PictureTester
   
   public static void testGrayscale()
   {
-	  Picture cumberlandIsland = new Picture("cumberlandIsland.jpg");
+	  Picture cumberlandIsland = new Picture("CumberlandIsland.jpg");
 	  cumberlandIsland.explore();
 	  cumberlandIsland.Grayscale();
 	  cumberlandIsland.explore();
@@ -161,7 +169,35 @@ public class PictureTester
 	  
   }
   
-  /** Main method for testing.  Every class can have a main
+  public static void testFullRed()
+  {
+	  Picture strawberries = new Picture("valentine.jpg");
+	  strawberries.explore();
+	  strawberries.zeroBlue();
+	  strawberries.zeroGreen();
+	  strawberries.drawString("If one thing were to vanish, it would be you or Swift 3.", 20, 50);
+	  strawberries.drawString("After long contemplation, I'd choose to delete Swift 3.", 23, 250);
+	  strawberries.explore();
+	  strawberries.write("valentine.jpg");
+  }
+  
+  public static void testGlitchArt()
+  {
+	  Picture glitchy = new Picture("GlitchArtModel.png");
+	  glitchy.explore();
+	  glitchy.negateColor();
+	  glitchy.mirrorVertical();
+	  glitchy.mirrorDiagonal();
+	  glitchy.mirrorDiagonalTopLeftToBottomRight();
+	  glitchy.mirrorBottomToTop();
+	  glitchy.mirrorVerticalRightToLeft();
+	  glitchy.fullRandomRed();
+	  glitchy.zeroBlue();
+	  glitchy.explore();
+	  
+  }
+  
+  /** Main method for testing. Every class can have a main
     * method in Java */
   public static void main(String [] args)
   {
@@ -173,6 +209,8 @@ public class PictureTester
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
+	//testFullRed();
+	testGlitchArt();
     //testGrayscale();
     //testFixUnderwater();
     //testMirrorVertical();
@@ -185,7 +223,7 @@ public class PictureTester
 	//testMirrorSnowman();
     //testMirrorDiagonal();
     //testCollage();
-	testFiveFilters();
+	//testFiveFilters();
 	//testMirrorBottomToTop();
 	//testMirrorDiagonal();
 	//testDiagonalTopLeftToBottomRight();
