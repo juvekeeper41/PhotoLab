@@ -45,6 +45,16 @@ public class PictureTester
 	  koala.explore();
   }
   
+  public static void testStegaography()
+  {
+	  Picture source = new Picture("");
+	  Picture hidden = new Picture("");
+	  source.encode(hidden);
+	  source.explore();
+	  hidden.explore();
+	  source.decode();
+  }
+  
   public static void testMirrorDiagonal()
   {
 	  //Picture temple = new Picture("temple.jpg");

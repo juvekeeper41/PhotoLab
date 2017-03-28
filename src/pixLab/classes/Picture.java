@@ -553,4 +553,46 @@ public class Picture extends SimplePicture
     beach.explore();
   }
   
+  public void encode(Picture hiddenPicture)
+  {
+	  Pixel [][] currentPicture = this.getPixels2D();
+	  Pixel [][] hiddenData = hiddenPicture.getPixels2D();
+	  
+	  Pixel hiddenPixel = null;
+	  Pixel currentPixel = null;
+	  
+	  for(int row = 0; row < currentPicture.length; row++)
+	  {
+		  for(int col = 0; col < currentPicture[0].length; col++)
+		  {
+			  hiddenPixel = hiddenData[row][col];
+			  currentPixel = currentPicture[row][col];
+			  
+			  if(hiddenPixel.getColor() == Color.WHITE)
+			  {
+				  int currentRed = currentPixel.getRed();
+				  if(currentRed % 2 == 0)
+				  {
+					  currentPixel.setRed(currentRed + 1);
+				  }
+			  }
+			  else
+			  {
+				  int currentRed = currentPixel.getRed();
+				  if(currentRed % 2 != 0)
+				  {
+					  currentPixel.setRed(currentRed - 1);
+				  }
+			  }
+		  }
+	  }
+	  this.write("encrypted.png");
+	  this.explore();
+  }
+  
+  public void decode()
+  {
+	  
+  }
+  
 } // this } is the end of class Picture, put all new methods before this
