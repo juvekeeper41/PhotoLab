@@ -45,14 +45,15 @@ public class PictureTester
 	  koala.explore();
   }
   
-  public static void testStegaography()
+  public static void testSteganography()
   {
-	  Picture source = new Picture("");
-	  Picture hidden = new Picture("");
+	  Picture source = new Picture("base image.png");
+	  Picture hidden = new Picture("hidden.png");
 	  source.encode(hidden);
 	  source.explore();
 	  hidden.explore();
 	  source.decode();
+	  source.explore();
   }
   
   public static void testMirrorDiagonal()
@@ -207,6 +208,16 @@ public class PictureTester
 	  
   }
   
+ public static void testChromakey()
+ {
+	 Picture Background = new Picture("Background.png");
+	 Picture Trump = new Picture("Trumpy.png");
+	 Background.explore();
+	 Trump.explore();
+	 Trump.chromakey(Background, 255, 255, 255);
+	 Trump.explore();
+ }
+  
   /** Main method for testing. Every class can have a main
     * method in Java */
   public static void main(String [] args)
@@ -220,7 +231,9 @@ public class PictureTester
     //testKeepOnlyGreen();
     //testNegate();
 	//testFullRed();
-	testGlitchArt();
+	  testChromakey();
+	//testSteganography();
+	//testGlitchArt();
     //testGrayscale();
     //testFixUnderwater();
     //testMirrorVertical();

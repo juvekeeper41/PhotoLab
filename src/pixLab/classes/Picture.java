@@ -508,8 +508,8 @@ public class Picture extends SimplePicture
   
   public void Grayscale()
   {
-    Pixel[][] pixels = this.getPixels2D();
-    for (Pixel[] row : pixels)
+    Pixel [][] pixels = this.getPixels2D();
+    for (Pixel [] row : pixels)
     {
       for (Pixel pixelObj : row)
       {   
@@ -537,11 +537,6 @@ public class Picture extends SimplePicture
 	  	}
      }
   
-  public void personalizedCollage()
-  {
-	  
-  }
-  
   /* Main method for testing - each class in Java can have a main 
    * method 
    */
@@ -568,7 +563,7 @@ public class Picture extends SimplePicture
 			  hiddenPixel = hiddenData[row][col];
 			  currentPixel = currentPicture[row][col];
 			  
-			  if(hiddenPixel.getColor() == Color.WHITE)
+			  if(hiddenPixel.getRed() == 255 && hiddenPixel.getGreen() == 255 && hiddenPixel.getBlue() == 255)
 			  {
 				  int currentRed = currentPixel.getRed();
 				  if(currentRed % 2 == 0)
@@ -587,12 +582,54 @@ public class Picture extends SimplePicture
 		  }
 	  }
 	  this.write("encrypted.png");
-	  this.explore();
+	  
   }
   
   public void decode()
   {
+	  Pixel [][] decoded = this.getPixels2D();
+	  Pixel currentPixel = null;
+	  
+	  for(int row = 0; row < decoded.length; row++)
+	  {
+		  for(int col = 0; col < decoded[0].length; col++)
+		  {
+			  //DFFF00
+			  currentPixel = decoded[row][col];
+			  int currentRed = currentPixel.getRed();
+			  if(currentRed % 2 == 0)
+			  {
+				  currentPixel.setColor(new Color(127, 155, 0));
+			  }
+		  }
+	  }
+	
+  }
+  
+  public void chromakey(Picture greenScreen, int red, int green, int blue)
+  {
+	  Pixel [][] currentPicture = this.getPixels2D();
+	  Pixel [][] backgroundPicture = greenScreen.getPixels2D();
+	  
+	  Pixel greenPixel= null;
+	  Pixel currentPixel = null;
+	  
+	  for(int row = 0; row < currentPicture.length; row++)
+	  {
+		  for(int col = 0; col < currentPicture[0].length; col++)
+		  {
+			  greenPixel = backgroundPicture[row][col];
+			  currentPixel = currentPicture[row][col];
+			  
+			  if(currentPixel.getRed() < red + 10 && currentPixel.getRed() > red - 10 && currentPixel.getGreen() < green + 10 && currentPixel.getGreen() > green - 10 && currentPixel.getBlue() < blue + 10 && currentPixel.getBlue() > blue - 10)
+			  {
+				  currentPixel.setColor(greenPixel.getColor());
+			  }
+		  }
+	  }
+	  
 	  
   }
+  
   
 } // this } is the end of class Picture, put all new methods before this
